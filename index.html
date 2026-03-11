@@ -44,6 +44,11 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 64px; /* offset for sticky nav */
+}
+
 body {
   font-family: var(--vads-font-sans);
   color: var(--vads-color-base);
@@ -151,6 +156,45 @@ body {
   font-size: 13px;
   opacity: 0.6;
   margin-top: 16px;
+}
+
+/* ======= Section Navigation ======= */
+.section-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--vads-color-white);
+  border-bottom: 1px solid var(--vads-color-gray-lighter);
+  box-shadow: var(--shadow-sm);
+}
+.section-nav .inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.section-nav a {
+  display: inline-block;
+  padding: 14px 18px;
+  color: var(--vads-color-gray);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: all 0.15s;
+}
+.section-nav a:hover {
+  color: var(--vads-color-primary);
+  background: var(--vads-color-gray-lightest);
+  border-bottom-color: var(--vads-color-primary-light);
+}
+.section-nav a:focus-visible {
+  outline: 3px solid var(--vads-color-focus);
+  outline-offset: -3px;
 }
 
 /* ======= Main Container ======= */
@@ -476,7 +520,7 @@ body {
 
 /* Print styles */
 @media print {
-  .tab-nav, .table-controls, .skip-nav { display: none; }
+  .tab-nav, .table-controls, .skip-nav, .section-nav { display: none; }
   .tab-panel { display: block !important; }
   .chart-row { break-inside: avoid; }
 }
@@ -510,11 +554,23 @@ body {
   </div>
 </section>
 
+<!-- Section Navigation -->
+<nav class="section-nav" aria-label="Page sections">
+  <div class="inner">
+    <a href="#overview">Overview</a>
+    <a href="#insights">Key Insights</a>
+    <a href="#breakdown">Spending Breakdown</a>
+    <a href="#states">State-Level Analysis</a>
+    <a href="#risks">Risks &amp; Opportunities</a>
+    <a href="#methodology">Methodology</a>
+  </div>
+</nav>
+
 <!-- Main Content -->
 <main id="main-content" class="main">
 
   <!-- KPI Summary -->
-  <section aria-label="Key expenditure totals">
+  <section id="overview" aria-label="Key expenditure totals">
     <div class="section-header">
       <h3>FY 2024 at a Glance</h3>
       <p>All figures represent expenditures in thousands of dollars ($000s) unless otherwise noted</p>
@@ -544,7 +600,7 @@ body {
   </section>
 
   <!-- Key Insights -->
-  <section aria-label="Key insights and findings">
+  <section id="insights" aria-label="Key insights and findings">
     <div class="section-header">
       <h3>Key Insights</h3>
       <p>Critical findings, concentration risks, and opportunities identified in the FY 2024 data</p>
@@ -576,7 +632,7 @@ body {
   </section>
 
   <!-- Expenditure Breakdown -->
-  <section aria-label="Expenditure breakdown analysis">
+  <section id="breakdown" aria-label="Expenditure breakdown analysis">
     <div class="section-header">
       <h3>How VA Dollars Are Spent</h3>
       <p>Breakdown of direct and indirect benefit categories</p>
@@ -604,7 +660,7 @@ body {
   </section>
 
   <!-- State-Level Analysis -->
-  <section aria-label="State-level analysis">
+  <section id="states" aria-label="State-level analysis">
     <div class="section-header">
       <h3>State-Level Analysis</h3>
       <p>Compare expenditures across states and territories</p>
@@ -716,7 +772,7 @@ body {
   </section>
 
   <!-- Additional Risks & Opportunities -->
-  <section aria-label="Additional analysis">
+  <section id="risks" aria-label="Additional analysis">
     <div class="section-header">
       <h3>Risks & Opportunities</h3>
       <p>Strategic observations for policy consideration</p>
@@ -743,7 +799,7 @@ body {
   </section>
 
   <!-- Methodology -->
-  <section aria-label="Data notes">
+  <section id="methodology" aria-label="Data notes">
     <div class="section-header">
       <h3>Data Notes & Methodology</h3>
     </div>
