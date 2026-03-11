@@ -2,6 +2,8 @@
 
 **Live dashboard:** https://kevinrcartercodes.github.io/VA_Test/
 
+> **Built by Kevin Carter.** This is a sample of what Claude can build in ~10 minutes — going from a raw government XLS file to a fully interactive, accessible, and publicly hosted dashboard. This is **not an official VA product** and is not affiliated with or endorsed by the U.S. Department of Veterans Affairs.
+
 An interactive, single-page dashboard visualizing how the U.S. Department of Veterans Affairs distributed **$295.5 billion** in expenditures across all 50 states, DC, Puerto Rico, and Guam during Fiscal Year 2024.
 
 ## What's in the Dashboard
