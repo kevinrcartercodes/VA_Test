@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geographic Distribution of VA Expenditures — FY 2024</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ======= VA Design System Foundation ======= */
+:root {
+  --vads-color-primary: #005ea2;
+  --vads-color-primary-dark: #1a4480;
+  --vads-color-primary-darker: #162e51;
+  --vads-color-primary-light: #73b3e7;
+  --vads-color-primary-lighter: #d9e8f6;
+  --vads-color-secondary: #d83933;
+  --vads-color-secondary-dark: #b50909;
+  --vads-color-success: #00a91c;
+  --vads-color-error: #d54309;
+  --vads-color-warning: #ffbe2e;
+  --vads-color-info: #00bde3;
+  --vads-color-base: #1b1b1b;
+  --vads-color-gray: #565c65;
+  --vads-color-gray-light: #a9aeb1;
+  --vads-color-gray-lighter: #dfe1e2;
+  --vads-color-gray-lightest: #f0f0f0;
+  --vads-color-white: #ffffff;
+  --vads-color-focus: #face00;
+  --vads-color-hub-health: #3f57a6;
+  --vads-color-hub-education: #40807e;
+  --vads-color-hub-disability: #a23737;
+  --vads-color-hub-pension: #4d8055;
+  --vads-color-hub-housing: #8e704f;
+  --vads-color-hub-insurance: #6f7a41;
+  --vads-color-hub-burials: #2378c3;
+  --vads-font-sans: 'Source Sans 3', 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --vads-font-serif: 'Bitter', Georgia, Cambria, 'Times New Roman', serif;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 2px 8px rgba(0,0,0,.08);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,.10);
+  --radius: 0;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--vads-font-sans);
+  color: var(--vads-color-base);
+  background: var(--vads-color-white);
+  line-height: 1.5;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Skip nav for 508 */
+.skip-nav {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 8px 16px;
+  background: var(--vads-color-primary);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+.skip-nav:focus {
+  left: 8px;
+  top: 8px;
+  outline: 3px solid var(--vads-color-focus);
+  outline-offset: 2px;
+}
+
+/* Focus styles for 508 */
+*:focus-visible {
+  outline: 3px solid var(--vads-color-focus);
+  outline-offset: 2px;
+}
+
+/* ======= Official Banner ======= */
+.official-banner {
+  background: var(--vads-color-gray-lightest);
+  padding: 4px 0;
+  font-size: 13px;
+  color: var(--vads-color-gray);
+  border-bottom: 1px solid var(--vads-color-gray-lighter);
+}
+.official-banner .inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.official-banner .flag {
+  font-size: 14px;
+}
+
+/* ======= Header ======= */
+.va-header {
+  background: var(--vads-color-primary-darker);
+  color: white;
+  padding: 16px 0;
+  border-bottom: 4px solid var(--vads-color-primary);
+}
+.va-header .inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.va-header h1 {
+  font-family: var(--vads-font-serif);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+.va-header .subtitle {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* ======= Hero / Title Section ======= */
+.hero {
+  background: linear-gradient(135deg, var(--vads-color-primary-darker) 0%, var(--vads-color-primary-dark) 100%);
+  color: white;
+  padding: 48px 0 40px;
+}
+.hero .inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.hero h2 {
+  font-family: var(--vads-font-serif);
+  font-size: 40px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+.hero .lead {
+  font-size: 20px;
+  line-height: 1.62;
+  opacity: 0.9;
+  max-width: 720px;
+}
+.hero .citation {
+  font-size: 13px;
+  opacity: 0.6;
+  margin-top: 16px;
+}
+
+/* ======= Main Container ======= */
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+
+/* ======= Section Headers ======= */
+.section-header {
+  margin: 48px 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--vads-color-primary);
+}
+.section-header h3 {
+  font-family: var(--vads-font-serif);
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--vads-color-primary-darker);
+}
+.section-header p {
+  color: var(--vads-color-gray);
+  margin-top: 4px;
+  font-size: 17px;
+}
+
+/* ======= KPI Cards ======= */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 32px 0;
+}
+.kpi-card {
+  background: white;
+  border: 1px solid var(--vads-color-gray-lighter);
+  border-left: 4px solid var(--vads-color-primary);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.kpi-card.accent-health { border-left-color: var(--vads-color-hub-health); }
+.kpi-card.accent-disability { border-left-color: var(--vads-color-hub-disability); }
+.kpi-card.accent-education { border-left-color: var(--vads-color-hub-education); }
+.kpi-card.accent-pension { border-left-color: var(--vads-color-hub-pension); }
+.kpi-card.accent-housing { border-left-color: var(--vads-color-hub-housing); }
+.kpi-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--vads-color-gray);
+  margin-bottom: 4px;
+}
+.kpi-value {
+  font-family: var(--vads-font-serif);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--vads-color-primary-darker);
+  line-height: 1.1;
+}
+.kpi-detail {
+  font-size: 15px;
+  color: var(--vads-color-gray);
+  margin-top: 4px;
+}
+
+/* ======= Alert / Insight Boxes ======= */
+.va-alert {
+  padding: 20px 24px;
+  margin: 24px 0;
+  border-left: 6px solid;
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+.va-alert.info { border-color: var(--vads-color-info); background: #e7f6f8; }
+.va-alert.warning { border-color: var(--vads-color-warning); background: #faf3d1; }
+.va-alert.success { border-color: var(--vads-color-success); background: #ecf3ec; }
+.va-alert.error { border-color: var(--vads-color-error); background: #f4e3db; }
+.va-alert .alert-heading {
+  font-weight: 700;
+  font-size: 17px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.va-alert .alert-body {
+  font-size: 15px;
+  line-height: 1.62;
+  color: var(--vads-color-base);
+}
+
+/* ======= Chart Containers ======= */
+.chart-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 24px 0;
+}
+@media (max-width: 768px) {
+  .chart-row { grid-template-columns: 1fr; }
+}
+.chart-card {
+  background: white;
+  border: 1px solid var(--vads-color-gray-lighter);
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+}
+.chart-card h4 {
+  font-family: var(--vads-font-serif);
+  font-size: 20px;
+  color: var(--vads-color-primary-darker);
+  margin-bottom: 4px;
+}
+.chart-card .chart-desc {
+  font-size: 14px;
+  color: var(--vads-color-gray);
+  margin-bottom: 16px;
+}
+.chart-card canvas {
+  width: 100% !important;
+  max-height: 360px;
+}
+.chart-card-full {
+  grid-column: 1 / -1;
+}
+
+/* ======= Data Table ======= */
+.table-controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.table-controls label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vads-color-gray);
+}
+.table-controls input,
+.table-controls select {
+  font-family: var(--vads-font-sans);
+  font-size: 15px;
+  padding: 8px 12px;
+  border: 1px solid var(--vads-color-gray-light);
+  background: white;
+}
+.table-controls input:focus,
+.table-controls select:focus {
+  outline: 3px solid var(--vads-color-focus);
+  outline-offset: 0;
+  border-color: var(--vads-color-primary);
+}
+.va-table-wrapper {
+  overflow-x: auto;
+  margin: 24px 0;
+  border: 1px solid var(--vads-color-gray-lighter);
+  box-shadow: var(--shadow-md);
+}
+.va-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.va-table thead {
+  background: var(--vads-color-primary-darker);
+  color: white;
+}
+.va-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+.va-table th:hover {
+  background: var(--vads-color-primary-dark);
+}
+.va-table th .sort-arrow {
+  margin-left: 4px;
+  opacity: 0.5;
+  font-size: 11px;
+}
+.va-table th.sorted .sort-arrow {
+  opacity: 1;
+}
+.va-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--vads-color-gray-lighter);
+  white-space: nowrap;
+}
+.va-table tbody tr:hover {
+  background: var(--vads-color-primary-lighter);
+}
+.va-table tbody tr:nth-child(even) {
+  background: var(--vads-color-gray-lightest);
+}
+.va-table tbody tr:nth-child(even):hover {
+  background: var(--vads-color-primary-lighter);
+}
+.va-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.va-table .bar-cell {
+  position: relative;
+  min-width: 160px;
+}
+.va-table .bar-bg {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 18px;
+  background: var(--vads-color-primary-lighter);
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+.va-table .bar-val {
+  position: relative;
+  z-index: 1;
+}
+
+/* ======= Tabs ======= */
+.tab-nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--vads-color-gray-lighter);
+  margin-bottom: 24px;
+}
+.tab-btn {
+  font-family: var(--vads-font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--vads-color-gray);
+  cursor: pointer;
+  margin-bottom: -2px;
+  transition: all 0.15s;
+}
+.tab-btn:hover {
+  color: var(--vads-color-primary);
+  background: var(--vads-color-gray-lightest);
+}
+.tab-btn.active {
+  color: var(--vads-color-primary-darker);
+  border-bottom-color: var(--vads-color-primary);
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ======= Footer ======= */
+.va-footer {
+  background: var(--vads-color-primary-darker);
+  color: white;
+  padding: 32px 0;
+  margin-top: 64px;
+}
+.va-footer .inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  font-size: 14px;
+  line-height: 1.75;
+  opacity: 0.8;
+}
+
+/* ======= Treemap / Proportional ======= */
+.treemap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin: 16px 0;
+  min-height: 200px;
+}
+.treemap-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 8px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+  cursor: default;
+  transition: filter 0.15s;
+}
+.treemap-item:hover { filter: brightness(1.15); }
+.treemap-item .tm-label { font-size: 14px; font-weight: 700; }
+.treemap-item .tm-value { font-size: 12px; opacity: 0.85; margin-top: 2px; }
+
+/* ======= Insights Grid ======= */
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+  margin: 24px 0;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* Print styles */
+@media print {
+  .tab-nav, .table-controls, .skip-nav { display: none; }
+  .tab-panel { display: block !important; }
+  .chart-row { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+
+<!-- Official Gov Banner -->
+<div class="official-banner" role="banner">
+  <div class="inner">
+    <span class="flag" aria-hidden="true">&#x1F1FA;&#x1F1F8;</span>
+    <span>An official website of the United States government</span>
+  </div>
+</div>
+
+<!-- VA Header -->
+<header class="va-header">
+  <div class="inner">
+    <h1>U.S. Department of Veterans Affairs</h1>
+    <div class="subtitle">National Center for Veterans Analysis and Statistics</div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="inner">
+    <h2>Geographic Distribution of VA Expenditures</h2>
+    <p class="lead">An interactive analysis of how the Department of Veterans Affairs invested $295.5 billion across the nation in Fiscal Year 2024 — serving Veterans through compensation, medical care, education, and more.</p>
+    <p class="citation">Source: GDX FY 2024 — Prepared by the National Center for Veterans Analysis and Statistics, September 2025</p>
+  </div>
+</section>
+
+<!-- Main Content -->
+<main id="main-content" class="main">
+
+  <!-- KPI Summary -->
+  <section aria-label="Key expenditure totals">
+    <div class="section-header">
+      <h3>FY 2024 at a Glance</h3>
+      <p>All figures represent expenditures in thousands of dollars ($000s) unless otherwise noted</p>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Total VA Expenditures</div>
+        <div class="kpi-value">$295.5B</div>
+        <div class="kpi-detail">Direct + Indirect combined</div>
+      </div>
+      <div class="kpi-card accent-disability">
+        <div class="kpi-label">Direct Benefits</div>
+        <div class="kpi-value">$154.5B</div>
+        <div class="kpi-detail">Compensation, Pension, Insurance, DIC</div>
+      </div>
+      <div class="kpi-card accent-health">
+        <div class="kpi-label">Indirect Benefits</div>
+        <div class="kpi-value">$141.0B</div>
+        <div class="kpi-detail">Medical Care, Education, Construction</div>
+      </div>
+      <div class="kpi-card accent-education">
+        <div class="kpi-label">States & Territories</div>
+        <div class="kpi-value">53</div>
+        <div class="kpi-detail">50 states, DC, PR, Guam</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Insights -->
+  <section aria-label="Key insights and findings">
+    <div class="section-header">
+      <h3>Key Insights</h3>
+      <p>Critical findings, concentration risks, and opportunities identified in the FY 2024 data</p>
+    </div>
+
+    <div class="insights-grid">
+      <div class="va-alert info" role="region" aria-label="Key finding">
+        <div class="alert-heading"><span aria-hidden="true">&#x1F4CA;</span> Spending Concentration</div>
+        <div class="alert-body">The top 5 states (TX, CA, FL, NC, GA) account for <strong>35.8%</strong> of all VA expenditures. The top 10 account for over half (51.1%), reflecting Veteran population distribution patterns.</div>
+      </div>
+      <div class="va-alert warning" role="region" aria-label="Risk factor">
+        <div class="alert-heading"><span aria-hidden="true">&#x26A0;</span> Medical Care Dominance Risk</div>
+        <div class="alert-body">Medical Care represents <strong>88.4%</strong> of indirect expenditures ($124.7B). This concentration creates budget vulnerability — any cost escalation in healthcare could significantly impact overall VA spending.</div>
+      </div>
+      <div class="va-alert success" role="region" aria-label="Opportunity">
+        <div class="alert-heading"><span aria-hidden="true">&#x2705;</span> Education Investment Opportunity</div>
+        <div class="alert-body">Education & Vocational Rehabilitation received $13.1B (9.3% of indirect), with outsized per-capita investment in states like Hawaii, Colorado, and Virginia — models for expanding GI Bill utilization nationally.</div>
+      </div>
+      <div class="va-alert error" role="region" aria-label="Risk factor">
+        <div class="alert-heading"><span aria-hidden="true">&#x1F6A8;</span> Compensation Growth Pressure</div>
+        <div class="alert-body">Compensation & Pension at <strong>$144.3B (93.4%</strong> of direct) reflects both expanded PACT Act eligibility and rising disability claims. This is the single largest spending category at 48.8% of all VA expenditures.</div>
+      </div>
+    </div>
+
+    <div class="va-alert info" role="region" aria-label="Additional insight" style="margin-top:0">
+      <div class="alert-heading"><span aria-hidden="true">&#x1F3DB;</span> Infrastructure & Construction Disparity</div>
+      <div class="alert-body">Construction spending of $1.39B (1.0% of indirect) is heavily concentrated: Kentucky alone received $350M (25% of total construction), while 10 states received under $2M each. This suggests uneven infrastructure modernization that may impact service delivery equity.</div>
+    </div>
+  </section>
+
+  <!-- Expenditure Breakdown -->
+  <section aria-label="Expenditure breakdown analysis">
+    <div class="section-header">
+      <h3>How VA Dollars Are Spent</h3>
+      <p>Breakdown of direct and indirect benefit categories</p>
+    </div>
+
+    <div class="chart-row">
+      <div class="chart-card">
+        <h4>Direct Benefit Expenditures</h4>
+        <p class="chart-desc">Benefits paid directly to Veterans and beneficiaries — $154.5B total</p>
+        <canvas id="chartDirectPie" role="img" aria-label="Pie chart showing direct benefit breakdown: Compensation and Pension 93.4%, DIC and Survivors Pension 6.2%, Insurance 0.4%"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Indirect Benefit Expenditures</h4>
+        <p class="chart-desc">Services and infrastructure supporting Veterans — $141.0B total</p>
+        <canvas id="chartIndirectPie" role="img" aria-label="Pie chart showing indirect benefit breakdown: Medical Care 88.4%, Education 9.3%, Memorial 1.0%, Construction 1.0%, Other 0.3%"></canvas>
+      </div>
+    </div>
+
+    <!-- Proportional block -->
+    <div class="chart-card" style="margin:24px 0;">
+      <h4>Overall Spending Composition</h4>
+      <p class="chart-desc">Each block is proportional to its share of total $295.5B in VA expenditures</p>
+      <div class="treemap" id="treemap" role="img" aria-label="Proportional treemap showing all expenditure categories"></div>
+    </div>
+  </section>
+
+  <!-- State-Level Analysis -->
+  <section aria-label="State-level analysis">
+    <div class="section-header">
+      <h3>State-Level Analysis</h3>
+      <p>Compare expenditures across states and territories</p>
+    </div>
+
+    <div class="tab-nav" role="tablist" aria-label="View options">
+      <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-charts" id="tab-charts">Charts</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-table" id="tab-table">Data Table</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-compare" id="tab-compare">Category Breakdown</button>
+    </div>
+
+    <!-- Charts Panel -->
+    <div class="tab-panel active" id="panel-charts" role="tabpanel" aria-labelledby="tab-charts">
+      <div class="chart-row">
+        <div class="chart-card chart-card-full">
+          <h4>Top 20 States by Total Expenditures</h4>
+          <p class="chart-desc">Combined direct and indirect expenditures in billions</p>
+          <canvas id="chartTop20" role="img" aria-label="Bar chart showing top 20 states by total VA expenditures"></canvas>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-card">
+          <h4>Direct vs. Indirect by State</h4>
+          <p class="chart-desc">Top 15 states — stacked comparison</p>
+          <canvas id="chartStacked" role="img" aria-label="Stacked bar chart comparing direct and indirect expenditures for top 15 states"></canvas>
+        </div>
+        <div class="chart-card">
+          <h4>Indirect-to-Direct Ratio</h4>
+          <p class="chart-desc">States where ratio &gt; 1 receive more indirect (medical/education) spending relative to direct benefits</p>
+          <canvas id="chartRatio" role="img" aria-label="Horizontal bar chart showing indirect-to-direct spending ratio by state"></canvas>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-card">
+          <h4>Medical Care: Top 15 States</h4>
+          <p class="chart-desc">Largest medical care expenditures ($000s)</p>
+          <canvas id="chartMedical" role="img" aria-label="Bar chart of top 15 states by medical care spending"></canvas>
+        </div>
+        <div class="chart-card">
+          <h4>Education & Voc Rehab: Top 15</h4>
+          <p class="chart-desc">Education and vocational rehabilitation spending ($000s)</p>
+          <canvas id="chartEducation" role="img" aria-label="Bar chart of top 15 states by education spending"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Panel -->
+    <div class="tab-panel" id="panel-table" role="tabpanel" aria-labelledby="tab-table">
+      <div class="table-controls">
+        <div>
+          <label for="search-input">Search states:</label>
+          <input type="text" id="search-input" placeholder="e.g. Texas, CA..." aria-label="Search states by name or abbreviation">
+        </div>
+        <div>
+          <label for="sort-select">Sort by:</label>
+          <select id="sort-select" aria-label="Sort table by column">
+            <option value="total_combined">Total Combined</option>
+            <option value="total_direct">Direct Benefits</option>
+            <option value="total_indirect">Indirect Benefits</option>
+            <option value="comp_pension">Compensation & Pension</option>
+            <option value="medical_care">Medical Care</option>
+            <option value="education_voc">Education</option>
+            <option value="state">State Name</option>
+          </select>
+        </div>
+      </div>
+      <div class="va-table-wrapper" role="region" aria-label="State expenditure data table" tabindex="0">
+        <table class="va-table" id="state-table">
+          <thead>
+            <tr>
+              <th scope="col">State</th>
+              <th scope="col" class="num">Total Combined ($000s)</th>
+              <th scope="col" class="num">Direct ($000s)</th>
+              <th scope="col" class="num">Indirect ($000s)</th>
+              <th scope="col" class="num">Comp & Pension</th>
+              <th scope="col" class="num">Medical Care</th>
+              <th scope="col" class="num">Education</th>
+              <th scope="col">Share of Total</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+      <p id="table-count" aria-live="polite" style="font-size:14px;color:var(--vads-color-gray);margin-top:8px;"></p>
+    </div>
+
+    <!-- Category Breakdown Panel -->
+    <div class="tab-panel" id="panel-compare" role="tabpanel" aria-labelledby="tab-compare">
+      <div class="chart-row">
+        <div class="chart-card chart-card-full">
+          <h4>Expenditure Category Breakdown by Top 10 States</h4>
+          <p class="chart-desc">How each state distributes its VA expenditures across major categories</p>
+          <canvas id="chartCategoryBreakdown" role="img" aria-label="Stacked bar chart showing category breakdown for top 10 states"></canvas>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-card">
+          <h4>Construction Spending</h4>
+          <p class="chart-desc">Top 10 states by construction expenditure ($000s)</p>
+          <canvas id="chartConstruction" role="img" aria-label="Bar chart of top 10 states by construction spending"></canvas>
+        </div>
+        <div class="chart-card">
+          <h4>Memorial Benefits</h4>
+          <p class="chart-desc">Top 10 states by memorial benefit expenditure ($000s)</p>
+          <canvas id="chartMemorial" role="img" aria-label="Bar chart of top 10 states by memorial benefit spending"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Additional Risks & Opportunities -->
+  <section aria-label="Additional analysis">
+    <div class="section-header">
+      <h3>Risks & Opportunities</h3>
+      <p>Strategic observations for policy consideration</p>
+    </div>
+
+    <div class="insights-grid">
+      <div class="va-alert warning" role="region" aria-label="Risk">
+        <div class="alert-heading"><span aria-hidden="true">&#x26A0;</span> Geographic Access Gaps</div>
+        <div class="alert-body">Rural states like Wyoming ($847M), Vermont ($517M), and North Dakota ($732M) receive the lowest total expenditures. While proportional to Veteran populations, rural Veterans often face longer travel distances to VA facilities, potentially limiting healthcare access.</div>
+      </div>
+      <div class="va-alert success" role="region" aria-label="Opportunity">
+        <div class="alert-heading"><span aria-hidden="true">&#x2705;</span> High-Impact Education States</div>
+        <div class="alert-body">California ($1.8B), Texas ($1.6B), and Florida ($1.1B) lead in education spending, likely driven by large military-to-civilian transition pipelines near major installations. Targeted outreach in mid-tier states could further boost GI Bill utilization.</div>
+      </div>
+      <div class="va-alert info" role="region" aria-label="Observation">
+        <div class="alert-heading"><span aria-hidden="true">&#x1F4CA;</span> States with Indirect &gt; Direct Spending</div>
+        <div class="alert-body">28 states receive more in indirect benefits (medical, education) than direct payments. New York (1.28x), Ohio (1.22x), and Illinois (1.21x) lead — suggesting higher medical care utilization relative to compensation claims in these states.</div>
+      </div>
+      <div class="va-alert warning" role="region" aria-label="Risk">
+        <div class="alert-heading"><span aria-hidden="true">&#x26A0;</span> Loan Guaranty Minimal Footprint</div>
+        <div class="alert-body">Loan Guaranty expenditures total only $42.4M (0.03% of indirect) — the smallest category. As housing affordability challenges grow nationwide, this program's limited spending may indicate underutilization of VA Home Loan benefits.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology -->
+  <section aria-label="Data notes">
+    <div class="section-header">
+      <h3>Data Notes & Methodology</h3>
+    </div>
+    <div style="max-width:72ex;line-height:1.75;color:var(--vads-color-gray);">
+      <p>State-level expenditures are rounded to the nearest thousand dollars. For programs associated with individuals, expenditures are based on the Veteran's state of residence. For non-individual programs (e.g., Construction), expenditures are reported by place of performance. FY 2024 is the first year that Memorial Benefits expenditures are included in GDX. This data may not be directly comparable with other VA financial reports due to differing criteria. DIC and Survivors Pension was also newly added as a separate category.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="va-footer">
+  <div class="inner">
+    <strong>U.S. Department of Veterans Affairs</strong><br>
+    Geographic Distribution of VA Expenditures (GDX) — Fiscal Year 2024<br>
+    Prepared by the National Center for Veterans Analysis and Statistics, September 2025<br>
+    Questions: vancvas@va.gov
+  </div>
+</footer>
+
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+// ===================== DATA =====================
+const DATA = [{"state":"Texas","fips":"48","total_direct":17839704.15,"comp_pension":16924320.02,"insurance":38966.49,"dic":876417.65,"total_indirect":12591994.21,"memorial":102751.02,"construction":127814.9,"education_voc":1599954.45,"loan_guaranty":5098.46,"medical_care":10722965.87,"housing_auto":33409.51,"total_combined":30431698.36,"abbrev":"TX"},{"state":"California","fips":"06","total_direct":12421133.24,"comp_pension":11639967.32,"insurance":51900.47,"dic":729265.45,"total_indirect":13161349.28,"memorial":129161.14,"construction":242757.44,"education_voc":1797904.96,"loan_guaranty":3002.68,"medical_care":10968069.42,"housing_auto":20453.64,"total_combined":25582482.52,"abbrev":"CA"},{"state":"Florida","fips":"12","total_direct":13515334.85,"comp_pension":12648628.79,"insurance":48598.26,"dic":818107.8,"total_indirect":11404199.25,"memorial":116564.94,"construction":63635.8,"education_voc":1140616.29,"loan_guaranty":3979.79,"medical_care":10049488.34,"housing_auto":29914.09,"total_combined":24919534.1,"abbrev":"FL"},{"state":"North Carolina","fips":"37","total_direct":7734612.7,"comp_pension":7267113.52,"insurance":20735.86,"dic":446763.33,"total_indirect":5336273.9,"memorial":33672.46,"construction":12259.64,"education_voc":569475.8,"loan_guaranty":2101.54,"medical_care":4700137.76,"housing_auto":18626.7,"total_combined":13070886.6,"abbrev":"NC"},{"state":"Georgia","fips":"13","total_direct":7317489.8,"comp_pension":6913590.98,"insurance":18594.07,"dic":385304.75,"total_indirect":4566193.59,"memorial":60231.18,"construction":32414.13,"education_voc":567988.57,"loan_guaranty":2221.87,"medical_care":3889787.02,"housing_auto":13550.82,"total_combined":11883683.39,"abbrev":"GA"},{"state":"Virginia","fips":"51","total_direct":6807672,"comp_pension":6494759.4,"insurance":18902.31,"dic":294010.29,"total_indirect":4145886.91,"memorial":34692.41,"construction":11501.66,"education_voc":849048.16,"loan_guaranty":2709.14,"medical_care":3233978.78,"housing_auto":13956.75,"total_combined":10953558.91,"abbrev":"VA"},{"state":"Ohio","fips":"39","total_direct":4184648.71,"comp_pension":3838652.81,"insurance":19388.7,"dic":326607.21,"total_indirect":5097372.61,"memorial":44466.67,"construction":20433.85,"education_voc":259465.61,"loan_guaranty":859.64,"medical_care":4761387.05,"housing_auto":10759.81,"total_combined":9282021.33,"abbrev":"OH"},{"state":"Pennsylvania","fips":"42","total_direct":4109786.66,"comp_pension":3743927.59,"insurance":27906.54,"dic":337952.54,"total_indirect":4593826.54,"memorial":58065.4,"construction":23663.97,"education_voc":270198.26,"loan_guaranty":611.87,"medical_care":4233305.47,"housing_auto":7981.59,"total_combined":8703613.2,"abbrev":"PA"},{"state":"New York","fips":"36","total_direct":3771661.67,"comp_pension":3461947.05,"insurance":32728.51,"dic":276986.11,"total_indirect":4832333.69,"memorial":61757.13,"construction":100913.97,"education_voc":398552.77,"loan_guaranty":409.54,"medical_care":4266014.78,"housing_auto":4685.5,"total_combined":8603995.36,"abbrev":"NY"},{"state":"Tennessee","fips":"47","total_direct":4215801.86,"comp_pension":3926315,"insurance":11137.43,"dic":278349.43,"total_indirect":3474171.12,"memorial":39819.6,"construction":14973.57,"education_voc":280264.59,"loan_guaranty":1210.86,"medical_care":3129872.03,"housing_auto":8030.46,"total_combined":7689972.98,"abbrev":"TN"},{"state":"Illinois","fips":"17","total_direct":3389073.26,"comp_pension":3131870.11,"insurance":25098.58,"dic":232104.57,"total_indirect":4088651.24,"memorial":40205.96,"construction":13616.19,"education_voc":261077.26,"loan_guaranty":626.58,"medical_care":3764411.9,"housing_auto":8713.36,"total_combined":7477724.5,"abbrev":"IL"},{"state":"Arizona","fips":"04","total_direct":3778421.19,"comp_pension":3538037.04,"insurance":11496.88,"dic":228887.27,"total_indirect":3597105.89,"memorial":24807.12,"construction":7168.39,"education_voc":319020.44,"loan_guaranty":1373.37,"medical_care":3234290.39,"housing_auto":10446.18,"total_combined":7375527.08,"abbrev":"AZ"},{"state":"South Carolina","fips":"45","total_direct":4131909.82,"comp_pension":3860162.47,"insurance":12154.86,"dic":259592.48,"total_indirect":2814711.6,"memorial":26945.49,"construction":6705.71,"education_voc":280359.7,"loan_guaranty":1275.71,"medical_care":2490657.92,"housing_auto":8767.07,"total_combined":6946621.42,"abbrev":"SC"},{"state":"Washington","fips":"53","total_direct":3887658.63,"comp_pension":3642114.53,"insurance":13075.74,"dic":232468.37,"total_indirect":3039265.06,"memorial":18649.99,"construction":23778.06,"education_voc":393001.34,"loan_guaranty":1311.85,"medical_care":2595995.1,"housing_auto":6528.71,"total_combined":6926923.69,"abbrev":"WA"},{"state":"Michigan","fips":"26","total_direct":3366686.04,"comp_pension":3079447.1,"insurance":16996.22,"dic":270242.72,"total_indirect":3315523.51,"memorial":34104.89,"construction":18658.37,"education_voc":186874.25,"loan_guaranty":532.02,"medical_care":3070051.75,"housing_auto":5302.24,"total_combined":6682209.55,"abbrev":"MI"},{"state":"Missouri","fips":"29","total_direct":2935946.77,"comp_pension":2719845.63,"insurance":11837.17,"dic":204263.97,"total_indirect":3524457.28,"memorial":29876.8,"construction":22519.11,"education_voc":164877.01,"loan_guaranty":637.51,"medical_care":3300907.66,"housing_auto":5639.17,"total_combined":6460404.04,"abbrev":"MO"},{"state":"Alabama","fips":"01","total_direct":3857052.29,"comp_pension":3579164.3,"insurance":10564.48,"dic":267323.52,"total_indirect":2486629.86,"memorial":28712.75,"construction":4605.41,"education_voc":234072.75,"loan_guaranty":1093.17,"medical_care":2211303.55,"housing_auto":6842.23,"total_combined":6343682.15,"abbrev":"AL"},{"state":"Colorado","fips":"08","total_direct":3145279.27,"comp_pension":2984551.69,"insurance":9668.55,"dic":151059.03,"total_indirect":2483453.26,"memorial":24263.05,"construction":8334.3,"education_voc":424601.17,"loan_guaranty":1553.4,"medical_care":2019319.83,"housing_auto":5381.5,"total_combined":5628732.53,"abbrev":"CO"},{"state":"Oklahoma","fips":"40","total_direct":3201481.58,"comp_pension":2966191.55,"insurance":7752.22,"dic":227537.82,"total_indirect":2249394.67,"memorial":21529.08,"construction":52831.62,"education_voc":163505.43,"loan_guaranty":695.74,"medical_care":2006580.73,"housing_auto":4252.06,"total_combined":5450876.25,"abbrev":"OK"},{"state":"Maryland","fips":"24","total_direct":2982680.14,"comp_pension":2836767.58,"insurance":10734.91,"dic":135177.65,"total_indirect":2324407.64,"memorial":22923.78,"construction":7821.08,"education_voc":324780.7,"loan_guaranty":1254.57,"medical_care":1961742.67,"housing_auto":5884.84,"total_combined":5307087.79,"abbrev":"MD"},{"state":"Indiana","fips":"18","total_direct":2330437.53,"comp_pension":2148867.47,"insurance":8713.34,"dic":172856.72,"total_indirect":2607955.63,"memorial":38768.7,"construction":5829.55,"education_voc":133222.18,"loan_guaranty":563.86,"medical_care":2422375.38,"housing_auto":7195.96,"total_combined":4938393.15,"abbrev":"IN"},{"state":"Wisconsin","fips":"55","total_direct":2075162.19,"comp_pension":1906193.12,"insurance":12813.5,"dic":156155.57,"total_indirect":2662499.69,"memorial":25641.55,"construction":17871.1,"education_voc":118560.74,"loan_guaranty":372.9,"medical_care":2494972.9,"housing_auto":5080.5,"total_combined":4737661.89,"abbrev":"WI"},{"state":"Kentucky","fips":"21","total_direct":2084438.26,"comp_pension":1912404.76,"insurance":6587.73,"dic":165445.77,"total_indirect":2512379.78,"memorial":19052.67,"construction":350319.79,"education_voc":127332.67,"loan_guaranty":432.67,"medical_care":2011117.88,"housing_auto":4124.09,"total_combined":4596818.04,"abbrev":"KY"},{"state":"Louisiana","fips":"22","total_direct":2287331.36,"comp_pension":2118672.28,"insurance":6782.46,"dic":161876.63,"total_indirect":2071745.13,"memorial":21013.76,"construction":3419.13,"education_voc":133823.18,"loan_guaranty":337.11,"medical_care":1908807.32,"housing_auto":4344.63,"total_combined":4359076.5,"abbrev":"LA"},{"state":"Minnesota","fips":"27","total_direct":1874262.22,"comp_pension":1713050.7,"insurance":13904.91,"dic":147306.61,"total_indirect":2453515.42,"memorial":26527.28,"construction":2562.85,"education_voc":101811.85,"loan_guaranty":383.8,"medical_care":2317452.1,"housing_auto":4777.53,"total_combined":4327777.64,"abbrev":"MN"},{"state":"Oregon","fips":"41","total_direct":2016868.46,"comp_pension":1865416.67,"insurance":8460.34,"dic":142991.45,"total_indirect":2239573.38,"memorial":22491.77,"construction":4237.91,"education_voc":125027.29,"loan_guaranty":490.34,"medical_care":2083907.16,"housing_auto":3418.92,"total_combined":4256441.84,"abbrev":"OR"}];
+// Add remaining states (loaded inline for performance)
+const DATA2=[{"state":"Massachusetts","abbrev":"MA","total_direct":1722313.06,"comp_pension":1597202.71,"insurance":0,"dic":125110.35,"total_indirect":2365621.74,"memorial":17187.53,"construction":5825.38,"education_voc":202137.46,"loan_guaranty":294.14,"medical_care":2136237.41,"housing_auto":3939.82,"total_combined":4087934.8},{"state":"Nevada","abbrev":"NV","total_direct":2084314.38,"comp_pension":1981000.67,"insurance":4311.78,"dic":99001.93,"total_indirect":1888452.36,"memorial":10096.5,"construction":5522.62,"education_voc":148525.28,"loan_guaranty":638.96,"medical_care":1719467.84,"housing_auto":4201.16,"total_combined":3972766.73},{"state":"Arkansas","abbrev":"AR","total_direct":1868805.35,"comp_pension":1714465.61,"insurance":4658.32,"dic":149681.42,"total_indirect":1868545.71,"memorial":14185.76,"construction":18186.68,"education_voc":81650.92,"loan_guaranty":325.99,"medical_care":1748695.45,"housing_auto":5500.93,"total_combined":3737351.06},{"state":"New Jersey","abbrev":"NJ","total_direct":1866286.52,"comp_pension":1721723.24,"insurance":0,"dic":144563.28,"total_indirect":1631252.17,"memorial":22713.61,"construction":8291.85,"education_voc":203174.03,"loan_guaranty":506.98,"medical_care":1393678.04,"housing_auto":2887.67,"total_combined":3497538.69},{"state":"Mississippi","abbrev":"MS","total_direct":1662438.33,"comp_pension":1548679.29,"insurance":4408.67,"dic":109350.38,"total_indirect":1466818.55,"memorial":11718.18,"construction":1825.6,"education_voc":87409.26,"loan_guaranty":296.69,"medical_care":1361851.62,"housing_auto":3717.2,"total_combined":3129256.88},{"state":"Kansas","abbrev":"KS","total_direct":1278830.19,"comp_pension":1192364.6,"insurance":5716.83,"dic":80748.77,"total_indirect":1322866.53,"memorial":11751.8,"construction":2701.51,"education_voc":100087.12,"loan_guaranty":290.82,"medical_care":1204868.45,"housing_auto":3166.84,"total_combined":2601696.73},{"state":"West Virginia","abbrev":"WV","total_direct":1139503.25,"comp_pension":1044686.69,"insurance":3798.9,"dic":91017.65,"total_indirect":1425008.9,"memorial":6949.65,"construction":3114.72,"education_voc":42346.83,"loan_guaranty":125.12,"medical_care":1370433.22,"housing_auto":2039.36,"total_combined":2564512.15},{"state":"New Mexico","abbrev":"NM","total_direct":1282593.19,"comp_pension":1197030.39,"insurance":4198.66,"dic":81364.14,"total_indirect":1192793.12,"memorial":10026.74,"construction":783.18,"education_voc":67027.78,"loan_guaranty":332.97,"medical_care":1111903.63,"housing_auto":2718.82,"total_combined":2475386.31},{"state":"Iowa","abbrev":"IA","total_direct":1103980.2,"comp_pension":1008026.05,"insurance":7412.16,"dic":88542,"total_indirect":1345306.12,"memorial":8626.9,"construction":501.35,"education_voc":61221.61,"loan_guaranty":186.62,"medical_care":1273372.4,"housing_auto":1397.25,"total_combined":2449286.33},{"state":"Puerto Rico","abbrev":"PR","total_direct":1251462.88,"comp_pension":1151324.87,"insurance":0,"dic":100138.01,"total_indirect":1136094.94,"memorial":17872.82,"construction":31786.57,"education_voc":61125.74,"loan_guaranty":41.83,"medical_care":1024526.26,"housing_auto":741.72,"total_combined":2387557.82},{"state":"Utah","abbrev":"UT","total_direct":1013267.19,"comp_pension":959688.93,"insurance":4500.3,"dic":49077.96,"total_indirect":956910.73,"memorial":13383.47,"construction":12303.89,"education_voc":111697.3,"loan_guaranty":398.14,"medical_care":817914.16,"housing_auto":1213.78,"total_combined":1970177.92},{"state":"Nebraska","abbrev":"NE","total_direct":970742.12,"comp_pension":901987.52,"insurance":4401.34,"dic":64353.26,"total_indirect":980076.25,"memorial":16818.83,"construction":7100.54,"education_voc":60618.29,"loan_guaranty":217.8,"medical_care":892998.32,"housing_auto":2322.47,"total_combined":1950818.37},{"state":"Idaho","abbrev":"ID","total_direct":990629.53,"comp_pension":930976.61,"insurance":2974.62,"dic":56678.3,"total_indirect":921802.5,"memorial":6063.9,"construction":1537.81,"education_voc":67083,"loan_guaranty":316.57,"medical_care":845205.89,"housing_auto":1595.32,"total_combined":1912432.03},{"state":"Connecticut","abbrev":"CT","total_direct":769759.88,"comp_pension":718154.14,"insurance":0,"dic":51605.74,"total_indirect":1142638.54,"memorial":5731.23,"construction":13518.75,"education_voc":93991.61,"loan_guaranty":181.58,"medical_care":1027486.02,"housing_auto":1729.35,"total_combined":1912398.41},{"state":"Hawaii","abbrev":"HI","total_direct":881753.86,"comp_pension":833998.45,"insurance":5551.28,"dic":42204.14,"total_indirect":816563.08,"memorial":11958.25,"construction":2191.45,"education_voc":150219.42,"loan_guaranty":875.42,"medical_care":650678.4,"housing_auto":640.14,"total_combined":1698316.94},{"state":"Maine","abbrev":"ME","total_direct":864439.98,"comp_pension":804693.12,"insurance":0,"dic":59746.86,"total_indirect":811849.14,"memorial":3204.29,"construction":2966.57,"education_voc":41320.79,"loan_guaranty":121.6,"medical_care":762030.22,"housing_auto":2205.68,"total_combined":1676289.12},{"state":"Montana","abbrev":"MT","total_direct":704953.19,"comp_pension":662374.21,"insurance":2522.11,"dic":40056.87,"total_indirect":795739.84,"memorial":3113.91,"construction":1183.03,"education_voc":39476.23,"loan_guaranty":331.16,"medical_care":751139.61,"housing_auto":495.9,"total_combined":1500693.03},{"state":"New Hampshire","abbrev":"NH","total_direct":573484.65,"comp_pension":537427.6,"insurance":0,"dic":36057.05,"total_indirect":712305.11,"memorial":2953.71,"construction":2636.14,"education_voc":47725.98,"loan_guaranty":144.32,"medical_care":656939.03,"housing_auto":1905.94,"total_combined":1285789.77},{"state":"District of Columbia","abbrev":"DC","total_direct":167300.67,"comp_pension":159711.31,"insurance":667.06,"dic":6922.31,"total_indirect":1097734.28,"memorial":131489.42,"construction":34042.03,"education_voc":32606.25,"loan_guaranty":56.47,"medical_care":899156.04,"housing_auto":384.06,"total_combined":1265034.95},{"state":"South Dakota","abbrev":"SD","total_direct":481996.46,"comp_pension":449489.9,"insurance":1388.67,"dic":31117.88,"total_indirect":731796.47,"memorial":5969.6,"construction":5928.55,"education_voc":26377.57,"loan_guaranty":131.55,"medical_care":692529.02,"housing_auto":860.19,"total_combined":1213792.93},{"state":"Alaska","abbrev":"AK","total_direct":561855.46,"comp_pension":544643.85,"insurance":1095.45,"dic":16116.16,"total_indirect":640291.85,"memorial":2495.12,"construction":10038.58,"education_voc":55300.67,"loan_guaranty":284.95,"medical_care":572119.84,"housing_auto":52.68,"total_combined":1202147.31},{"state":"Delaware","abbrev":"DE","total_direct":469403.22,"comp_pension":436799.35,"insurance":1979.17,"dic":30624.7,"total_indirect":390027.24,"memorial":2110.08,"construction":3723.38,"education_voc":31406.43,"loan_guaranty":141.28,"medical_care":351625.23,"housing_auto":1020.85,"total_combined":859430.46},{"state":"Wyoming","abbrev":"WY","total_direct":353025.85,"comp_pension":334649.15,"insurance":1506.81,"dic":16869.9,"total_indirect":494031.34,"memorial":2294.41,"construction":377.23,"education_voc":20417.2,"loan_guaranty":117.9,"medical_care":470301.22,"housing_auto":523.38,"total_combined":847057.19},{"state":"Rhode Island","abbrev":"RI","total_direct":349261.37,"comp_pension":323001.26,"insurance":0,"dic":26260.11,"total_indirect":432955.28,"memorial":2450.22,"construction":6719.88,"education_voc":38717.61,"loan_guaranty":70.67,"medical_care":384222.16,"housing_auto":774.74,"total_combined":782216.65},{"state":"North Dakota","abbrev":"ND","total_direct":338529.79,"comp_pension":315483.52,"insurance":1393.12,"dic":21653.15,"total_indirect":393740.3,"memorial":3210.55,"construction":5317.14,"education_voc":24724.51,"loan_guaranty":129.91,"medical_care":359931.72,"housing_auto":426.46,"total_combined":732270.08},{"state":"Vermont","abbrev":"VT","total_direct":213656.22,"comp_pension":199318.15,"insurance":0,"dic":14338.06,"total_indirect":303363.78,"memorial":798.41,"construction":0,"education_voc":14910.84,"loan_guaranty":31.08,"medical_care":287472.96,"housing_auto":150.49,"total_combined":517019.99},{"state":"Guam","abbrev":"GU","total_direct":128196.2,"comp_pension":118884.63,"insurance":153.23,"dic":9158.35,"total_indirect":83176.82,"memorial":366.48,"construction":0,"education_voc":10640.02,"loan_guaranty":60.36,"medical_care":72066.72,"housing_auto":43.25,"total_combined":211373.03}];
+const ALL_DATA = DATA.concat(DATA2);
+ALL_DATA.sort((a,b) => b.total_combined - a.total_combined);
+const GRAND_TOTAL = 295520651.767;
+
+// ===================== UTILITIES =====================
+function fmt(n) {
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(1) + 'B';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(1) + 'M';
+  return '$' + n.toFixed(0) + 'K';
+}
+function fmtNum(n) {
+  return n.toLocaleString('en-US', {maximumFractionDigits:0});
+}
+function pct(n, total) {
+  return (n/total*100).toFixed(1) + '%';
+}
+
+// VA-compliant color palette for charts
+const COLORS = {
+  primary: '#005ea2',
+  primaryDark: '#1a4480',
+  primaryDarker: '#162e51',
+  primaryLight: '#73b3e7',
+  primaryLighter: '#d9e8f6',
+  health: '#3f57a6',
+  education: '#40807e',
+  disability: '#a23737',
+  pension: '#4d8055',
+  housing: '#8e704f',
+  insurance: '#6f7a41',
+  burials: '#2378c3',
+  warning: '#ffbe2e',
+  secondary: '#d83933',
+};
+
+// Chart defaults
+Chart.defaults.font.family = "'Source Sans 3', 'Source Sans Pro', Arial, sans-serif";
+Chart.defaults.font.size = 13;
+Chart.defaults.color = '#1b1b1b';
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.padding = 16;
+
+// ===================== TREEMAP =====================
+(function buildTreemap() {
+  const container = document.getElementById('treemap');
+  const cats = [
+    {label:'Compensation & Pension', val:144281399.76, color:COLORS.disability},
+    {label:'Medical Care', val:124687751.61, color:COLORS.health},
+    {label:'Education & Voc Rehab', val:13148953.93, color:COLORS.education},
+    {label:'DIC & Survivors', val:9569100.74, color:COLORS.pension},
+    {label:'Memorial Benefits', val:1452966.62, color:COLORS.burials},
+    {label:'Construction', val:1392561.13, color:COLORS.housing},
+    {label:'Insurance', val:640711.7, color:COLORS.insurance},
+    {label:'Housing/Auto', val:304774.5, color:'#864381'},
+    {label:'Loan Guaranty', val:42431.77, color:'#565c65'},
+  ];
+  const total = cats.reduce((s,c)=>s+c.val,0);
+  cats.forEach(c => {
+    const pctVal = c.val/total*100;
+    const el = document.createElement('div');
+    el.className = 'treemap-item';
+    el.style.background = c.color;
+    el.style.flexBasis = Math.max(pctVal * 8, 60) + 'px';
+    el.style.flexGrow = pctVal;
+    el.style.minHeight = pctVal > 5 ? '80px' : '50px';
+    el.setAttribute('role', 'listitem');
+    el.setAttribute('aria-label', c.label + ': ' + fmt(c.val) + ' (' + pct(c.val, total) + ')');
+    if (pctVal > 2) {
+      el.innerHTML = '<span class="tm-label">' + c.label + '</span><span class="tm-value">' + fmt(c.val) + ' (' + pctVal.toFixed(1) + '%)</span>';
+    } else if (pctVal > 0.3) {
+      el.innerHTML = '<span class="tm-value" style="font-size:11px">' + c.label.split(' ')[0] + '</span>';
+    }
+    container.appendChild(el);
+  });
+  container.setAttribute('role', 'list');
+})();
+
+// ===================== PIE CHARTS =====================
+new Chart(document.getElementById('chartDirectPie'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Compensation & Pension', 'DIC & Survivors Pension', 'Insurance'],
+    datasets: [{
+      data: [144281399.76, 9569100.74, 640711.7],
+      backgroundColor: [COLORS.disability, COLORS.pension, COLORS.insurance],
+      borderWidth: 2, borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {position:'bottom'},
+      tooltip: {callbacks: {label: ctx => ctx.label + ': ' + fmt(ctx.parsed) + ' (' + pct(ctx.parsed, 154491212.2) + ')'}}
+    }
+  }
+});
+
+new Chart(document.getElementById('chartIndirectPie'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Medical Care', 'Education & Voc Rehab', 'Memorial Benefits', 'Construction', 'Housing/Auto & Loan'],
+    datasets: [{
+      data: [124687751.61, 13148953.93, 1452966.62, 1392561.13, 347206.27],
+      backgroundColor: [COLORS.health, COLORS.education, COLORS.burials, COLORS.housing, '#864381'],
+      borderWidth: 2, borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {position:'bottom'},
+      tooltip: {callbacks: {label: ctx => ctx.label + ': ' + fmt(ctx.parsed) + ' (' + pct(ctx.parsed, 141029439.56) + ')'}}
+    }
+  }
+});
+
+// ===================== TOP 20 BAR =====================
+const top20 = ALL_DATA.slice(0,20);
+new Chart(document.getElementById('chartTop20'), {
+  type: 'bar',
+  data: {
+    labels: top20.map(d => d.abbrev),
+    datasets: [{
+      label: 'Direct Benefits',
+      data: top20.map(d => d.total_direct / 1e3),
+      backgroundColor: COLORS.disability,
+    }, {
+      label: 'Indirect Benefits',
+      data: top20.map(d => d.total_indirect / 1e3),
+      backgroundColor: COLORS.health,
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      x: {stacked: true, grid:{display:false}},
+      y: {stacked: true, title:{display:true, text:'Billions ($)', font:{weight:'bold'}}, ticks:{callback: v=>'$'+v.toFixed(0)+'B'}}
+    },
+    plugins: {
+      tooltip: {callbacks: {label: ctx => ctx.dataset.label + ': $' + ctx.parsed.y.toFixed(1) + 'B'}},
+      legend: {position:'top'}
+    }
+  }
+});
+
+// ===================== STACKED DIRECT vs INDIRECT =====================
+const top15 = ALL_DATA.slice(0,15);
+new Chart(document.getElementById('chartStacked'), {
+  type: 'bar',
+  data: {
+    labels: top15.map(d => d.abbrev),
+    datasets: [{
+      label: 'Direct',
+      data: top15.map(d => d.total_direct / 1e3),
+      backgroundColor: COLORS.primaryDark,
+    }, {
+      label: 'Indirect',
+      data: top15.map(d => d.total_indirect / 1e3),
+      backgroundColor: COLORS.primaryLight,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    scales: {x:{stacked:true, ticks:{callback:v=>'$'+v+'B'}}, y:{stacked:true, grid:{display:false}}},
+    plugins: {legend:{position:'top'}}
+  }
+});
+
+// ===================== RATIO CHART =====================
+const ratioData = ALL_DATA.filter(d => d.total_direct > 0).map(d => ({...d, ratio: d.total_indirect / d.total_direct})).sort((a,b) => b.ratio - a.ratio).slice(0,15);
+new Chart(document.getElementById('chartRatio'), {
+  type: 'bar',
+  data: {
+    labels: ratioData.map(d => d.abbrev),
+    datasets: [{
+      label: 'Indirect / Direct Ratio',
+      data: ratioData.map(d => d.ratio),
+      backgroundColor: ratioData.map(d => d.ratio > 1 ? COLORS.education : COLORS.primaryLight),
+      borderColor: ratioData.map(d => d.ratio > 1 ? '#2d5f5d' : COLORS.primary),
+      borderWidth: 1
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    scales: {
+      x: {
+        title:{display:true, text:'Ratio'},
+        grid:{color: ctx => ctx.tick.value === 1 ? '#d83933' : '#dfe1e2'}
+      },
+      y:{grid:{display:false}}
+    },
+    plugins: {
+      legend:{display:false},
+      tooltip:{callbacks:{label:ctx=>'Ratio: '+ctx.parsed.x.toFixed(2)+'x'}}
+    }
+  }
+});
+
+// ===================== MEDICAL CARE =====================
+const medData = [...ALL_DATA].sort((a,b) => (b.medical_care||0) - (a.medical_care||0)).slice(0,15);
+new Chart(document.getElementById('chartMedical'), {
+  type: 'bar',
+  data: {
+    labels: medData.map(d => d.abbrev),
+    datasets: [{
+      label: 'Medical Care ($000s)',
+      data: medData.map(d => d.medical_care || 0),
+      backgroundColor: COLORS.health,
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y:{ticks:{callback:v=>fmt(v)}, title:{display:true,text:'$000s'}},
+      x:{grid:{display:false}}
+    },
+    plugins:{legend:{display:false}}
+  }
+});
+
+// ===================== EDUCATION =====================
+const eduData = [...ALL_DATA].sort((a,b) => (b.education_voc||0) - (a.education_voc||0)).slice(0,15);
+new Chart(document.getElementById('chartEducation'), {
+  type: 'bar',
+  data: {
+    labels: eduData.map(d => d.abbrev),
+    datasets: [{
+      label: 'Education & Voc Rehab ($000s)',
+      data: eduData.map(d => d.education_voc || 0),
+      backgroundColor: COLORS.education,
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y:{ticks:{callback:v=>fmt(v)}, title:{display:true,text:'$000s'}},
+      x:{grid:{display:false}}
+    },
+    plugins:{legend:{display:false}}
+  }
+});
+
+// ===================== CATEGORY BREAKDOWN (stacked) =====================
+const top10 = ALL_DATA.slice(0,10);
+new Chart(document.getElementById('chartCategoryBreakdown'), {
+  type: 'bar',
+  data: {
+    labels: top10.map(d => d.state),
+    datasets: [
+      {label:'Comp & Pension', data:top10.map(d=>d.comp_pension/1e3), backgroundColor:COLORS.disability},
+      {label:'Medical Care', data:top10.map(d=>(d.medical_care||0)/1e3), backgroundColor:COLORS.health},
+      {label:'Education', data:top10.map(d=>(d.education_voc||0)/1e3), backgroundColor:COLORS.education},
+      {label:'DIC & Survivors', data:top10.map(d=>(d.dic||0)/1e3), backgroundColor:COLORS.pension},
+      {label:'Other', data:top10.map(d=>((d.insurance||0)+(d.memorial||0)+(d.construction||0)+(d.loan_guaranty||0)+(d.housing_auto||0))/1e3), backgroundColor:COLORS.burials},
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {x:{stacked:true, grid:{display:false}}, y:{stacked:true, ticks:{callback:v=>'$'+v.toFixed(0)+'B'}, title:{display:true,text:'Billions ($)'}}},
+    plugins: {legend:{position:'top'}, tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': $'+ctx.parsed.y.toFixed(1)+'B'}}}
+  }
+});
+
+// ===================== CONSTRUCTION =====================
+const conData = [...ALL_DATA].sort((a,b) => (b.construction||0) - (a.construction||0)).slice(0,10);
+new Chart(document.getElementById('chartConstruction'), {
+  type: 'bar',
+  data: {
+    labels: conData.map(d => d.abbrev),
+    datasets: [{
+      label: 'Construction ($000s)',
+      data: conData.map(d => d.construction || 0),
+      backgroundColor: COLORS.housing,
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {y:{ticks:{callback:v=>'$'+(v/1e3).toFixed(0)+'M'}}, x:{grid:{display:false}}},
+    plugins:{legend:{display:false}}
+  }
+});
+
+// ===================== MEMORIAL =====================
+const memData = [...ALL_DATA].sort((a,b) => (b.memorial||0) - (a.memorial||0)).slice(0,10);
+new Chart(document.getElementById('chartMemorial'), {
+  type: 'bar',
+  data: {
+    labels: memData.map(d => d.abbrev),
+    datasets: [{
+      label: 'Memorial Benefits ($000s)',
+      data: memData.map(d => d.memorial || 0),
+      backgroundColor: COLORS.burials,
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {y:{ticks:{callback:v=>'$'+(v/1e3).toFixed(0)+'M'}}, x:{grid:{display:false}}},
+    plugins:{legend:{display:false}}
+  }
+});
+
+// ===================== TABS =====================
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => {b.classList.remove('active'); b.setAttribute('aria-selected','false');});
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected','true');
+    document.getElementById(btn.getAttribute('aria-controls')).classList.add('active');
+  });
+  btn.addEventListener('keydown', e => {
+    const btns = Array.from(document.querySelectorAll('.tab-btn'));
+    const idx = btns.indexOf(btn);
+    if (e.key === 'ArrowRight') { e.preventDefault(); btns[(idx+1)%btns.length].focus(); btns[(idx+1)%btns.length].click(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); btns[(idx-1+btns.length)%btns.length].focus(); btns[(idx-1+btns.length)%btns.length].click(); }
+  });
+});
+
+// ===================== DATA TABLE =====================
+function renderTable(data) {
+  const tbody = document.getElementById('table-body');
+  const maxCombined = Math.max(...data.map(d => d.total_combined));
+  tbody.innerHTML = data.map(d => {
+    const barW = (d.total_combined / maxCombined * 100).toFixed(1);
+    return '<tr>' +
+      '<td><strong>' + d.state + '</strong> (' + d.abbrev + ')</td>' +
+      '<td class="num bar-cell"><span class="bar-bg" style="width:' + barW + '%"></span><span class="bar-val">' + fmtNum(Math.round(d.total_combined)) + '</span></td>' +
+      '<td class="num">' + fmtNum(Math.round(d.total_direct)) + '</td>' +
+      '<td class="num">' + fmtNum(Math.round(d.total_indirect)) + '</td>' +
+      '<td class="num">' + fmtNum(Math.round(d.comp_pension)) + '</td>' +
+      '<td class="num">' + fmtNum(Math.round(d.medical_care || 0)) + '</td>' +
+      '<td class="num">' + fmtNum(Math.round(d.education_voc || 0)) + '</td>' +
+      '<td class="num">' + pct(d.total_combined, GRAND_TOTAL) + '</td>' +
+      '</tr>';
+  }).join('');
+  document.getElementById('table-count').textContent = 'Showing ' + data.length + ' of ' + ALL_DATA.length + ' states/territories';
+}
+
+function filterAndSort() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  const sortKey = document.getElementById('sort-select').value;
+  let filtered = ALL_DATA.filter(d =>
+    d.state.toLowerCase().includes(q) || d.abbrev.toLowerCase().includes(q)
+  );
+  if (sortKey === 'state') {
+    filtered.sort((a,b) => a.state.localeCompare(b.state));
+  } else {
+    filtered.sort((a,b) => (b[sortKey]||0) - (a[sortKey]||0));
+  }
+  renderTable(filtered);
+}
+
+document.getElementById('search-input').addEventListener('input', filterAndSort);
+document.getElementById('sort-select').addEventListener('change', filterAndSort);
+
+// Initial render
+renderTable(ALL_DATA);
+</script>
+</body>
+</html>
